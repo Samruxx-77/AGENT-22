@@ -643,7 +643,7 @@ jobs:
       RELEASE_TAG: ${{ inputs.tag }}
     steps:
       - name: Checkout release code (helper scripts only)
-        uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # v7.0.1
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v7.0.1
         with:
           ref: ${{ inputs.commit || github.sha }}
 
