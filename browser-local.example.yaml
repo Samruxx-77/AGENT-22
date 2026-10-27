@@ -1,0 +1,19 @@
+# AGENT 22 — local Chromium browser backend (no paid browser API).
+# Copy the browser: block into ~/.hermes/config.yaml (or your Hermes config),
+# then restart the gateway. Do NOT set browser.cdp_url to a public address,
+# do NOT enable remote debugging on 0.0.0.0, and do NOT turn on
+# use_real_profile for smoke tests (that would copy real logins/cookies).
+browser:
+  engine: auto          # "auto" = Chromium; "lightpanda" = faster, NO screenshots
+  executable_path: ""   # "" = pm's chromium (hermes pm install chromium), else system chromium
+  headed: false         # headless; a display-less host stays headless
+  allow_private_urls: false  # keep false; private URLs are SSRF-guarded by browser_url_policy
+  use_real_profile: false    # fresh throwaway profile per session; no real cookies/logins
+  user_data_dir: ""     # "" = fresh throwaway profile per session
+  cdp_url: ""           # "" = no external CDP endpoint; never set this to a public address
+  chromium_args: []     # extra flags, e.g. ["--lang=en"]
+# Toolsets: do NOT add "browser" or "terminal" to agent.disabled_toolsets.
+# hermes-telegram already includes both (full core tools); browser_exec is
+# additionally gated on the session having the terminal toolset, so a
+# Telegram session without terminal never sees browser_exec.
+# Telegram allowlist stays enabled: TELEGRAM_ALLOWED_USERS (user ids only).

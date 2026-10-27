@@ -1,0 +1,34 @@
+name: AGENT 22 mission-control tests
+on:
+  push:
+    paths:
+      - 'plugins/mission-control/**'
+      - 'tests/plugins/test_mission_control.py'
+      - 'tests/plugins/test_agent22_*.py'
+      - 'tests/skills/test_mission_control_skill.py'
+      - '.github/workflows/agent22-mission-control.yml'
+  pull_request:
+    paths:
+      - 'plugins/mission-control/**'
+      - 'tests/plugins/test_mission_control.py'
+      - 'tests/plugins/test_agent22_*.py'
+      - 'tests/skills/test_mission_control_skill.py'
+jobs:
+  mission-control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pytest
+      - run: >-
+          pytest tests/plugins/test_mission_control.py
+          tests/plugins/test_agent22_identity_security.py
+          tests/plugins/test_agent22_power.py
+          tests/plugins/test_agent22_platforms.py
+          tests/plugins/test_agent22_browser.py
+          tests/plugins/test_agent22_reflection.py
+          tests/skills/test_mission_control_skill.py
+          -q -p no:cacheprovider --noconftest
+      - run: python3 -m py_compile plugins/mission-control/*.py

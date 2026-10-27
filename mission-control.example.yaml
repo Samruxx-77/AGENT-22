@@ -1,0 +1,37 @@
+# AGENT 22 — Mission Control example configuration (P0)
+# Copy the values you need into your own config; this file contains
+# NO secrets, NO tokens, NO real prices -- all prices below are
+# examples only, as the blueprint requires. Do not paste a real
+# API key or bot token into this file or any mission record.
+#
+# Identity (see AGENT22_IDENTITY.md):
+#   agent_name: "AGENT 22"
+#   owner: "SAM"
+#   developer: "SAM"
+#
+# Mission defaults:
+mission:
+  max_steps: 50
+  max_retries: 3
+  # deadline: "2027-01-01T00:00:00+00:00"  # ISO timestamp, optional
+
+# Budget-aware routing (blueprint Feature B). Costs are estimates.
+routing:
+  enabled: true
+  default_profile: balanced
+  max_task_cost_usd: 0.25
+  daily_budget_usd: 2.00
+  allow_paid_fallback: false
+  max_retries_per_provider: 1
+  allowed_models: []  # empty = all healthy, capable models are eligible
+  # Example model profiles (example prices only -- replace with your own):
+  # - model_id: "example-fast-chat"
+  #   provider: "example-provider"
+  #   capabilities: ["chat"]
+  #   price_in_per_1k_usd: 0.001
+  #   price_out_per_1k_usd: 0.002
+  #   latency_tier: "fast"
+  #   healthy: true
+
+# Workspace for mission steps (steps and verification stay inside it):
+workspace: "./workspace"

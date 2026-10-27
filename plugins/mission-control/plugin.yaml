@@ -1,0 +1,4 @@
+name: mission-control
+version: "0.1.0"
+description: "P0 Mission Control: resumable missions, budget-aware routing, workspace-bounded execution with verification, and bounded own-asset security audit. Registers `hermes mission ...`."
+author: "SAM"
